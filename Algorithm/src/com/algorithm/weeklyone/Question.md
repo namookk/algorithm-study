@@ -13,6 +13,7 @@ Weekly One
 + 놀이기구의 이용 횟수 count : 1 ≤ count ≤ 2,500, count는 자연수
 
 ###입출력 예
-    price money count result 
+|price|money|count|result|
+|:-----:|:-----:|:----:|:------:|
+|3|20|4|10|
 
-      3     20    4     10
