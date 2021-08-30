@@ -1,4 +1,4 @@
-package com.algorithm.weeklytwo;
+package com.algorithm.day2.solution1;
 
 import java.util.ArrayList;
 import java.util.List;

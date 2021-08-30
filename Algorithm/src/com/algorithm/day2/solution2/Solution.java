@@ -1,4 +1,4 @@
-package com.algorithm.weeklyfour;
+package com.algorithm.day2.solution2;
 
 import java.util.*;
 
