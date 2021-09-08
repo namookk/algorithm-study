@@ -1,4 +1,4 @@
-package com.algorithm.day8
+package com.algorithm.day8;
 
 import java.util.*;
 
