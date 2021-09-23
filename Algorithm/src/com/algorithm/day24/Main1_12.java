@@ -18,7 +18,6 @@ public class Main1_12 {
             int num = Integer.parseInt(binary, 2);
             answer += (char) num;
             str = str.substring(7);
-            System.out.println(str);
             n--;
         }
         return answer;
