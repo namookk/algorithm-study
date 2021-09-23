@@ -3,7 +3,7 @@ package com.algorithm.day22;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Main3 {
+public class Main1_3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();

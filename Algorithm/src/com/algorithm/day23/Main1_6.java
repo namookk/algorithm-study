@@ -2,7 +2,7 @@ package com.algorithm.day23;
 
 import java.util.*;
 
-public class Main6 {
+public class Main1_6 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();

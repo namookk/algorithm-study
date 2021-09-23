@@ -3,7 +3,7 @@ package com.algorithm.day22;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Main {
+public class Main1_1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
