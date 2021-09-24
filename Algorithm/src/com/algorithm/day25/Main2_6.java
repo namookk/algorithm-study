@@ -1,28 +1,39 @@
 package com.algorithm.day25;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main2_6 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        sc.nextLine();
-        String s = sc.nextLine();
-
-        System.out.println(solution(n, s));
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        for(int i : solution(n, arr)){
+            System.out.print(i + " ");
+        }
     }
-
-    public static int solution(int n, String s) {
-        int answer = 0;
-        s = s.replaceAll(" ", "");
-        String[] arr = s.split("0");
-        for(String str : arr) {
-            int len = str.length();
-            if(len > 0) {
-                int sum = (len + 1) * (len / 2) + (len % 2 == 1 ? (len + 1) / 2 : 0); // 합
-                answer += sum;
-            }
+    public static List<Integer> solution(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            String numStr = arr[i] + "";
+            String reverseStr = new StringBuilder(numStr).reverse().toString();
+            int num = Integer.parseInt(reverseStr);
+            if(isPrime(num)) answer.add(num);
         }
         return answer;
     }
+    public static boolean isPrime(int num){
+        if(num == 1){
+            return false;
+        }
+        for(int i = 2; i <= Math.sqrt(num); i++) {
+            if(num % i == 0) return false;
+        }
+        return true;
+    }
 }
+

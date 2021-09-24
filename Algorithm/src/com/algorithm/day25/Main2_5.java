@@ -1,28 +1,17 @@
 package com.algorithm.day25;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main2_5 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
-        for(int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
-        for(int i : solution(n, arr)){
-            System.out.print(i + " ");
-        }
+        System.out.println(solution(n));
     }
-    public static List<Integer> solution(int n, int[] arr) {
-        List<Integer> answer = new ArrayList<>();
-        for(int i = 0; i < n; i++){
-            String numStr = arr[i] + "";
-            String reverseStr = new StringBuilder(numStr).reverse().toString();
-            int num = Integer.parseInt(reverseStr);
-            if(isPrime(num)) answer.add(num);
+    public static int solution(int n) {
+        int answer = 0;
+        for(int i = 1; i <= n; i++){
+            if(isPrime(i)) answer++;
         }
         return answer;
     }
@@ -36,4 +25,3 @@ public class Main2_5 {
         return true;
     }
 }
-
