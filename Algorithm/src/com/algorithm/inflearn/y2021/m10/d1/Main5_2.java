@@ -1,4 +1,4 @@
-package com.algorithm.m10.d1;
+package com.algorithm.inflearn.y2021.m10.d1;
 
 import java.util.*;
 
