@@ -9,16 +9,22 @@ public class Solution {
     }
 
     public static long solution(String expression) {
-        long answer = 0;
+        long answer = Long.MIN_VALUE;
         List<Long> numList= new ArrayList<>();
         List<Giho> gihoList = new ArrayList<>();
         String numStr = "";
+        List<Giho> gihoEx = new ArrayList<>();
+        gihoEx.add(Giho.MINUS);
+        gihoEx.add(Giho.MULTIPLICATION);
+        gihoEx.add(Giho.PLUS);
+
         for(char c : expression.toCharArray()) {
             if(Character.isDigit(c)){
                 numStr += String.valueOf(c);
             }else{
                 Long num = Long.valueOf(numStr);
                 numList.add(num);
+                numStr = "";
 
                 if(c == '*') gihoList.add(Giho.MULTIPLICATION);
                 else if(c == '+') gihoList.add(Giho.PLUS);
@@ -26,17 +32,52 @@ public class Solution {
             }
         }
 
+        Long num = Long.valueOf(numStr);
+        numList.add(num);
+
         Queue<Priority> priortyQueue = new LinkedList<>();
-        priortyQueue.offer(new Priority(numList, gihoList, Giho.PLUS, null));
-        priortyQueue.offer(new Priority(numList, gihoList, Giho.MINUS, null));
-        priortyQueue.offer(new Priority(numList, gihoList, Giho.MULTIPLICATION, null));
+        priortyQueue.offer(new Priority(numList, gihoList, null));
 
         while(!priortyQueue.isEmpty()) {
             int len = priortyQueue.size();
             for(int i = 0; i < len; i++) {
+                Priority priority = priortyQueue.poll();
+                if(priority.numList.size() > 1) {
+                    for(Giho g : gihoEx){
+                        if(priority.visited.indexOf(g) == -1) {
+                            List<Giho> temp_gihoList = new ArrayList<>(priority.gihoList);
+                            List<Long> temp_numList = new ArrayList<>(priority.numList);
+                            List<Giho> visited = new ArrayList<>(priority.visited);
+                            for(int j = 0; j < temp_gihoList.size(); j++) {
+                                Giho g2 = temp_gihoList.get(j);
 
+                                if(g.equals(g2)) {
+                                    Long num1 = temp_numList.get(j);
+                                    Long num2 = temp_numList.get(j+1);
+                                    Long output = null;
+                                    if(g.equals(Giho.MINUS)){
+                                        output = num1 - num2;
+                                    }else if(g.equals(Giho.MULTIPLICATION)){
+                                        output = num1 * num2;
+                                    }else if(g.equals(Giho.PLUS)){
+                                        output = num1 + num2;
+                                    }
+                                    temp_numList.remove(j+1);
+                                    temp_numList.set(j, output);
+                                    temp_gihoList.remove(j);
+                                    j--;
+                                }
+                            }
+                            visited.add(g);
+                            priortyQueue.offer(new Priority(temp_numList, temp_gihoList, visited));
+                        }
+                    }
+                }else{
+                    answer = Math.max(answer, Math.abs(priority.numList.get(0)));
+                }
             }
         }
+
         return answer;
     }
 }
@@ -44,38 +85,16 @@ public class Solution {
 class Priority{
     List<Long> numList;
     List<Giho> gihoList;
-    Giho giho;
     List<Giho> visited;
 
-    public Priority(List<Long> _numList, List<Giho> _gihoList, Giho _giho, List<Giho> _visited) {
-        numList = new ArrayList<>();
-        for(int i = 0; i < _gihoList.size(); i++) {
-            Giho g = _gihoList.get(i);
-            if(g.equals(_giho)) {
-                Long num1 = _numList.get(i);
-                Long num2 = _numList.get(i+1);
-                Long output = null;
-                if(g.equals(Giho.MINUS)){
-                    output = num1 - num2;
-                }else if(g.equals(Giho.MULTIPLICATION)){
-                    output = num1 * num2;
-                }else if(g.equals(Giho.PLUS)){
-                    output = num1 + num2;
-                }
-                _numList.remove(i+1);
-                _numList.set(i, output);
-                _gihoList.remove(i);
-                i--;
-            }
-        }
-        Collections.copy(numList, _numList);
-
-        giho = _giho;
+    public Priority(List<Long> _numList, List<Giho> _gihoList, List<Giho> _visited) {
+        numList = _numList;
+        gihoList = _gihoList;
         if(_visited == null) {
             visited = new ArrayList<>();
-            visited.add(_giho);
+        }else {
+            visited = _visited;
         }
-        visited = _visited;
     }
 }
 
