@@ -49,6 +49,7 @@ function solution2(arr){
     return (totHour >= 10 ? totHour : "0" + totHour) + ":" + (totMin >= 10 ? totMin : "0" + totMin);
 }
 
+//3번
 const ings1 = ["r 10", "a 23", "t 124", "k 9"];
 const menu1 = ["PIZZA arraak 145", "HAMBURGER tkar 180", "BREAD kkk 30", "ICECREAM rar 50", "SHAVEDICE rar 45", "JUICE rra 55", "WATER a 20"];
 const sell1 = ["BREAD 5", "ICECREAM 100", "PIZZA 7", "JUICE 10", "WATER 1"];
@@ -87,7 +88,7 @@ function solution3(ings, menu, sell) {
     return answer;
 }
 
-
+//4번
 const s1 = "aaabbaaa";
 const s2 = "wowwow";
 // console.log(solution4(s1));
@@ -117,15 +118,15 @@ function solution4(s) {
     return answer;
 }
 
-
+//5번
 const rows1 = 3;
 const columns1 = 4;
 
 const rows2 = 3;
 const columns2 = 3;
 
-console.log(solution5(rows1, columns1));
-console.log(solution5(rows2, columns2));
+//console.log(solution5(rows1, columns1));
+//console.log(solution5(rows2, columns2));
 
 function solution5(rows, columns) {
     const arr = Array.from(Array(rows), () => Array.from(Array(columns), () => Array(2).fill(0)));
@@ -151,5 +152,66 @@ function solution5(rows, columns) {
         }
     }
 
+    return answer;
+}
+//6번
+const time = 3.5;
+const plans = [["홍콩", "11PM", "9AM"], ["엘에이", "3PM", "2PM"]];
+
+//console.log(solution6(time, plans));
+function solution6(time, plans) {
+    let answer = "";
+    for(const plan of plans) {
+        let start = Number(plan[1].length > 3 ? plan[1].substring(0,2) : plan[1].substring(0,1));
+        let end = Number(plan[2].length > 3 ? plan[2].substring(0,2) : plan[2].substring(0,1));
+        if(plan[1].includes("PM")) start += 12;
+        if(plan[2].includes("PM")) end += 12;
+        if(18 - start > 0) time -= 18 - start;
+        if(end - 13 > 0) time -= end - 13;
+        if(time >= 0) answer = plan[0];
+    }
+    return answer;
+}
+
+
+
+//7번
+const grid1 = ["1","234","56789"];
+const grid2 = ["A","MAN","DRINK","WATER11"];
+
+console.log(solution7(grid1, true));
+console.log(solution7(grid2, false));
+
+function solution7(grid, clockwise) {
+    let answer = [];
+    let idx = grid.length - 1;
+    while(answer.length < grid.length) {
+        let str = "";
+        if(clockwise) {
+            for (let i = grid.length - 1; i >= idx; i--) {
+                let gridStr = grid[i];
+                if (i == idx) {
+                    str += gridStr[0];
+                    grid[i] = gridStr.substring(1, gridStr.length);
+                } else {
+                    str += gridStr[1] + gridStr[0];
+                    grid[i] = gridStr.substring(2, gridStr.length);
+                }
+            }
+        }else{
+            for(let i = idx; i < grid.length; i++){
+                let gridStr = grid[i];
+                if( i == idx) {
+                    str += gridStr[gridStr.length - 1];
+                    grid[i] = gridStr.substring(0, gridStr.length - 1);
+                }else{
+                    str += gridStr[gridStr.length - 1] + gridStr[gridStr.length - 2];
+                    grid[i] = gridStr.substring(0, gridStr.length - 2);
+                }
+            }
+        }
+        idx--;
+        answer.push(str);
+    }
     return answer;
 }
