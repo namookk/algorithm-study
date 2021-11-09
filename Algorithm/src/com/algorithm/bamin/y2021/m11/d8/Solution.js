@@ -121,10 +121,8 @@ function solution4(s) {
 //5번
 const rows1 = 3;
 const columns1 = 4;
-
 const rows2 = 3;
 const columns2 = 3;
-
 //console.log(solution5(rows1, columns1));
 //console.log(solution5(rows2, columns2));
 
