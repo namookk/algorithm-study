@@ -2,6 +2,7 @@ const data1 = "[1,2,[3,4,[5,[6]]]]";
 const data2 = "[1,2,[3],4,[5,6,[7,8]],9,[10]]";
 const data3 = "[1,2,[3,4],5,6]]";
 const data4 = "[1,[2,3],[5,6],[7,[8,9],[1,2";
+
 class Node{
     constructor(type, child, value) {
         this._obj = {};
@@ -100,7 +101,6 @@ function run(s){
     const node = new Node("root", []);
     node.setChild(recursive(arr, new Node("array", [])));
 
-    console.log(JSON.stringify(node.getValue()));
     function recursive(item, node){
         for(let i = 0 ; i < item.length; i++) {
             if(typeof item[i] == 'object') {
@@ -111,4 +111,6 @@ function run(s){
         }
         return node.getValue();
     }
+
+    return JSON.stringify(node.getValue());
 }
