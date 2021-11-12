@@ -114,3 +114,48 @@ function run(s){
 
     return JSON.stringify(node.getValue());
 }
+//"[1,2,[3],4,[5,6,[7,8]],9,[10]]"
+function run2(s) {
+    const root = new Node("root", []);
+    let flag = true;
+    const stack = new Stack(); // 배열 스택 Stack<Node>
+    const qStack = new Stack(); // 큐 스택 Stack<Queue>
+    recursive(0);
+    function recursive(idx) {
+        let node;
+        if(s[idx] == ','){
+        }else if(s[idx] == '['){
+            stack.push(new Node("array", []));
+            qStack.push(new Queue());
+        }else if(s[idx] == ']'){
+            if(stack.isEmpty()){
+                flag = false;
+                return;
+            }
+            node = stack.poll();
+            let q = qStack.poll();
+            if(q != null){
+                while(!q.isEmpty()){
+                    node.setChild(q.poll().getValue());
+                }
+            }
+            if(!qStack.isEmpty()){
+                let q2 = qStack.poll();
+                q2.offer(node);
+                qStack.push(q2);
+            }
+        }else{
+            let q = qStack.poll();
+            q.offer(new Node("number", [], s[idx]));
+            qStack.push(q);
+        }
+        if (idx == s.length - 1){
+            if(node) root.setChild(node.getValue());
+            else {flag = false;}
+        }else{
+            recursive(idx + 1);
+        }
+    }
+    if(!flag) return "정상적인 배열이 아닙니다.";
+    return JSON.stringify(root.getValue());
+}
