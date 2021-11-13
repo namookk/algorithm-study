@@ -1,30 +1,36 @@
 package com.algorithm.inflearn.y2021.m11.d5;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main8_4 {
+    static Integer[] arr;
+    static int k;
+    static Integer min = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] arr = new int[n];
+        arr = new Integer[n];
         for(int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        int k = sc.nextInt();
-        System.out.println(solution(arr, k));
+        k = sc.nextInt();
+        Arrays.sort(arr, Collections.reverseOrder());
+        DFS(0, 0);
+        System.out.println(min);
     }
 
-    public static int solution(int[] arr, int k) {
-        int answer = 0;
-        Arrays.sort(arr);
-        int idx = arr.length - 1;
-        while(k > 0) {
-            answer += k / arr[idx];
-            k = k % arr[idx];
-            idx--;
-            System.out.println(k);
+    public static void DFS(int cnt, int sum) {
+        if(sum > k) return;
+        if(cnt >= min) return;
+        if(sum == k) {
+            min = Math.min(min, cnt);
+        }else{
+            for(int i = 0; i < arr.length; i++) {
+                DFS(cnt + 1, sum + arr[i]);
+            }
         }
-        return answer;
     }
 }
