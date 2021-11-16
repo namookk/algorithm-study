@@ -17,12 +17,6 @@ public class Main8_8 {
 
     public static String solution() {
         setCombination(new int[n+1], new ArrayList<Integer>());
-        for(List<Integer> list : combinationList) {
-            for(Integer num : list) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
         return answer;
     }
 
@@ -32,7 +26,6 @@ public class Main8_8 {
             List<Integer> combination = new ArrayList<>(list);
             Collections.copy(combination, list);
             Queue<Integer> queue = new LinkedList<>();
-            boolean flag = false;
             for(Integer num : list) {
                 queue.offer(num);
             }
