@@ -1,5 +1,8 @@
-package com.algorithm;
+package com.algorithm.programmers.y2021.m9.d16;
 
+
+//짝지어 제거하기 난이도 2
+//https://programmers.co.kr/learn/courses/30/lessons/12973
 public class Solution {
 
 	public static void main(String[] args) {

@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+// https://programmers.co.kr/learn/courses/30/lessons/42583
+
 public class Solution {
     public static void main(String[] args) {
         int bridge_length = 100;
