@@ -2,6 +2,8 @@ package com.algorithm.programmers.y2021.m10.d18;
 
 import java.util.*;
 
+//https://programmers.co.kr/learn/courses/30/lessons/43163
+
 public class Solution {
     public static void main(String[] args) {
         String begin = "1234567000";

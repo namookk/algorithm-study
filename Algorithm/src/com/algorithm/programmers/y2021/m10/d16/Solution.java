@@ -2,7 +2,7 @@ package com.algorithm.programmers.y2021.m10.d16;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+//https://programmers.co.kr/learn/courses/30/lessons/42587
 public class Solution {
     public static void main(String[] args) {
         int[] priorities = {1, 1, 9, 1, 1, 1};

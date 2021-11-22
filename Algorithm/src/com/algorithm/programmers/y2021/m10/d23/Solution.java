@@ -2,6 +2,7 @@ package com.algorithm.programmers.y2021.m10.d23;
 
 import java.util.Arrays;
 
+//https://programmers.co.kr/learn/courses/30/lessons/42842
 public class Solution {
     public static void main(String[] args) {
         int brown = 24;

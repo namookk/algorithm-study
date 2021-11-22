@@ -1,10 +1,10 @@
 package com.algorithm.programmers.y2021.m10.d21;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+//https://programmers.co.kr/learn/courses/30/lessons/76502
 public class Solution {
     public static void main(String[] args) {
         String s = "}]()[{";

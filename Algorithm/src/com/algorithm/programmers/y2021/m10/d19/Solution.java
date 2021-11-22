@@ -3,6 +3,7 @@ package com.algorithm.programmers.y2021.m10.d19;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://programmers.co.kr/learn/courses/30/lessons/77485
 public class Solution {
     public static void main(String[] args) {
         int rows = 6;

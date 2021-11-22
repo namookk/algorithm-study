@@ -2,6 +2,7 @@ package com.algorithm.programmers.y2021.m10.d25;
 
 import java.util.*;
 
+//https://programmers.co.kr/learn/courses/30/lessons/87946
 public class Solution {
     public static void main(String[] args) {
         int k = 80;

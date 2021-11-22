@@ -2,6 +2,7 @@ package com.algorithm.programmers.y2021.m10.d22;
 
 import java.util.*;
 
+//https://programmers.co.kr/learn/courses/30/lessons/12978
 public class Solution {
     public static void main(String[] args) {
         int N = 6;
