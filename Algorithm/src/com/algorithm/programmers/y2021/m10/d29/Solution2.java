@@ -1,5 +1,6 @@
 package com.algorithm.programmers.y2021.m10.d29;
 
+//https://programmers.co.kr/learn/courses/30/lessons/12924
 public class Solution2 {
     public static void main(String[] args) {
         int n = 15;

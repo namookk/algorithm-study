@@ -1,5 +1,5 @@
 package com.algorithm.programmers.y2021.m10.d29;
-
+//https://programmers.co.kr/learn/courses/30/lessons/12939
 public class Solution {
     public static void main(String[] args) {
         String s = "1 2 3 4";

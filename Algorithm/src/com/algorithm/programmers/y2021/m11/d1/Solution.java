@@ -2,7 +2,7 @@ package com.algorithm.programmers.y2021.m11.d1;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//https://programmers.co.kr/learn/courses/30/lessons/87377
 public class Solution {
     public static void main(String[] args) {
         int[][] line = {{2, -1, 4}, {-2, -1, 4}, {0, -1, 1}, {5, -8, -12}, {5, 8, 12}};
