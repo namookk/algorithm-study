@@ -2,6 +2,7 @@ package com.algorithm.programmers.y2021.m11.d8;
 
 import java.util.Stack;
 
+//https://programmers.co.kr/learn/courses/30/lessons/81303
 public class Solution {
     static int[] deleted;
     static int curr;

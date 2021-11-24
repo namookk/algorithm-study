@@ -1,10 +1,9 @@
 package com.algorithm.programmers.y2021.m11.d6;
 
-import java.awt.*;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://programmers.co.kr/learn/courses/30/lessons/1844
 public class Solution {
     public static void main(String[] args) {
         int[][] maps = {{1, 0, 1, 1, 1}, {1, 0, 1, 0, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 0, 0}, {0, 0, 0, 0, 1}};

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//https://programmers.co.kr/learn/courses/30/lessons/42889
 public class Solution {
     public static void main(String[] args) {
         int N = 5;

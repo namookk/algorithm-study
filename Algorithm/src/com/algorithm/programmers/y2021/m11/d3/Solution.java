@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+//https://programmers.co.kr/learn/courses/30/lessons/49189
 public class Solution {
     public static void main(String[] args) {
         int n = 6;
