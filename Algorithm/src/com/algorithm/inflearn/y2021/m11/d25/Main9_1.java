@@ -19,10 +19,7 @@ public class Main9_1 {
 
     public static int solution(List<People> peopleList) {
         int answer = 0;
-        Collections.sort(peopleList, (a,b) -> {
-            if(a.height == b.height) return b.weight - a.weight;
-            else return b.height - a.height;
-        });
+        Collections.sort(peopleList);
 
         int maxWeight = Integer.MIN_VALUE;
 
@@ -35,11 +32,18 @@ public class Main9_1 {
     }
 }
 
-class People{
+class People implements Comparable<People>{
     int height;
     int weight;
+
     public People(int _height, int _weight) {
         height = _height;
         weight = _weight;
+    }
+
+    @Override
+    public int compareTo(People p) {
+        if(p.height == this.height) return p.weight - this.weight;
+        else return p.height - this.height;
     }
 }
