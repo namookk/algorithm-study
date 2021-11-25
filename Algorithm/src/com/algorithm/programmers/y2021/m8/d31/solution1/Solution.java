@@ -1,6 +1,7 @@
 package com.algorithm.programmers.y2021.m8.d31.solution1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
@@ -8,7 +9,33 @@ public class Solution {
         int[][] scores = {{100,90,98,88,65},{50,45,99,85,77},{47,88,95,80,67},{61,57,100,80,65},{24,90,94,75,65}};
 
         System.out.println(solution(scores));
+        System.out.println(solution2(scores));
     }
+
+    public static String solution2(int[][] scores) {
+       StringBuffer sb = new StringBuffer();
+       int colIdx = 0;
+       for(int i = 0; i < scores.length; i++) {
+           int mine = scores[i][i];
+           Integer[] convertArr = new Integer[scores.length];
+           for(int j = 0; j < scores.length; j++){
+               convertArr[j] = scores[j][colIdx];
+           }
+           Arrays.sort(convertArr);
+           int sum = Arrays.stream(convertArr).reduce(0, Integer::sum);
+           double avg;
+           if((convertArr[0] == mine && convertArr[1] > mine) || (convertArr[convertArr.length - 1] == mine && convertArr[convertArr.length - 2] < mine)) {
+               sum -= mine;
+               avg = (double)sum/ (convertArr.length - 1);
+           }else{
+               avg = (double)sum/ convertArr.length;
+           }
+           sb.append(getScoreStr(avg));
+           colIdx++;
+       }
+       return sb.toString();
+    }
+
     public static String solution(int[][] scores) {
         String answer = "";
         for(int i = 0; i < scores.length; i++){

@@ -10,7 +10,6 @@ public class Solution {
     }
 
     public static long solution(int price, int money, int count) {
-        long answer = -1;
         long total = (long)price * ((count + 1) * (count / 2) + (count % 2 == 1 ? (count + 1) / 2 : 0)); // 합
 
         return total > money ? total - money : 0;
