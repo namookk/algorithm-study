@@ -2,7 +2,7 @@ package com.algorithm.inflearn.m11.d26;
 
 import java.util.*;
 
-/*
+/* solution1
 *   TestCase    Result
 *       1         S
 *       2         S
@@ -10,29 +10,36 @@ import java.util.*;
 *       4         E
 *       5         E
 * */
+/* solution2
+*   TestCase    Result
+*       1         S
+*       2         S
+*       3         S
+*       4         S
+*       5         S
+* */
 
 public class Main9_3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        List<WeddingTime> timeList = new ArrayList<>();
+        //List<WeddingTime> timeList = new ArrayList<>();
+        List<WeddingTime2> timeList2 = new ArrayList<>();
         for(int i = 0; i < n; i++) {
-            timeList.add(new WeddingTime(sc.nextInt(), sc.nextInt()));
+            int st = sc.nextInt();
+            int et = sc.nextInt();
+            //timeList.add(new WeddingTime(st, et));
+            timeList2.add(new WeddingTime2(st, "s"));
+            timeList2.add(new WeddingTime2(et, "e"));
         }
 
-        System.out.println(solution(timeList));
+        //System.out.println(solution1(timeList));
+        System.out.println(solution2(timeList2));
     }
 
-    public static int solution(List<WeddingTime> timeList) {
+    public static int solution1(List<WeddingTime> timeList) {
         int answer = 0;
         Queue<WeddingTime> queue = new LinkedList<>();
-        /*
-            5 14
-            12 15
-            14 18
-            15 20
-            20 30
-        */
         Collections.sort(timeList);
         for(WeddingTime t : timeList) {
             answer = Math.max(answer, queue.size());
@@ -43,6 +50,20 @@ public class Main9_3 {
             }
             queue.offer(t);
         }
+        return answer;
+    }
+
+    public static int solution2(List<WeddingTime2> timeList){
+        int answer = Integer.MIN_VALUE;
+        int cnt = 0;
+        Collections.sort(timeList);
+        for(WeddingTime2 time : timeList) {
+            if(time.state.equals("s")) cnt++;
+            else cnt--;
+
+            answer = Math.max(answer, cnt);
+        }
+
         return answer;
     }
 
@@ -58,5 +79,20 @@ class WeddingTime implements Comparable<WeddingTime>{
     @Override
     public int compareTo(WeddingTime t){
         return this.start - t.start;
+    }
+}
+
+class WeddingTime2 implements Comparable<WeddingTime2>{
+    int time;
+    String state;
+    public WeddingTime2(int _time, String _state){
+        time = _time;
+        state = _state;
+    }
+
+    @Override
+    public int compareTo(WeddingTime2 t){
+        if(this.time == t.time) return this.state.compareTo(t.state);
+        else return this.time - t.time;
     }
 }
