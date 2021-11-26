@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m9.d24;
+package com.algorithm.inflearn.chapter2;
 
 import java.util.Scanner;
 

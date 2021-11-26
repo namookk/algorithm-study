@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m9.d23;
+package com.algorithm.inflearn.chapter2;
 
 import java.util.ArrayList;
 import java.util.List;

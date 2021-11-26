@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m9.d26;
+package com.algorithm.inflearn.chapter2;
 import java.util.*;
 
 public class Main2_12 {

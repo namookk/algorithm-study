@@ -1,8 +1,10 @@
-package com.algorithm.inflearn.m9.d23;
+package com.algorithm.inflearn.chapter2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Main2_2 {
+public class Main2_1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -10,18 +12,15 @@ public class Main2_2 {
         for(int i = 0 ; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        System.out.println(solution(n, arr));
+        solution(n, arr);
     }
 
-    public static int solution(int n, Integer[] arr) {
-        int answer = 0;
+    public static void solution(int n, Integer[] arr) {
+        List<Integer> list = new ArrayList<>();
         int num = Integer.MIN_VALUE;
         for(Integer i : arr) {
-            if(i > num) {
-                answer++;
-                num = i;
-            }
+            if(i > num) System.out.print(i+" ");
+            num = i;
         }
-        return answer;
     }
 }

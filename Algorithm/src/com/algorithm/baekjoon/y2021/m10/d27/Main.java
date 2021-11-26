@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+//https://www.acmicpc.net/problem/1764
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
