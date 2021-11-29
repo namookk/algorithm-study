@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d4;
+package com.algorithm.inflearn.chapter8;
 
 import java.util.Arrays;
 import java.util.Scanner;

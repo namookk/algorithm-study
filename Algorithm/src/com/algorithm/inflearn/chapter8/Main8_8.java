@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d16;
+package com.algorithm.inflearn.chapter8;
 
 import java.util.*;
 import java.util.stream.Collectors;

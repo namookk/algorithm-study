@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d17;
+package com.algorithm.inflearn.chapter8;
 
 import java.util.LinkedList;
 import java.util.Queue;

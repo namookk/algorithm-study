@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d26;
+package com.algorithm.inflearn.chapter9;
 
 import java.util.*;
 

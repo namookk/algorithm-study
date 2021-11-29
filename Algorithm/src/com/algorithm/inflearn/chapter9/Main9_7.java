@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d29;
+package com.algorithm.inflearn.chapter9;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;

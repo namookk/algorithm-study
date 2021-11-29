@@ -1,7 +1,6 @@
-package com.algorithm.inflearn.m11.d28;
+package com.algorithm.inflearn.chapter9;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Dijkstra {
     static int[] dist;

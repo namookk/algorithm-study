@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m11.d5;
+package com.algorithm.inflearn.chapter8;
 
 import java.util.Scanner;
 
