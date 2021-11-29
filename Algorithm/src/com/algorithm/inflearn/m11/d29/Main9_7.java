@@ -40,7 +40,6 @@ public class Main9_7 {
                 Edge e = graph.get(nowVex).get(i);
                 if(dist[e.vex] > nowCost + e.cost){
                     dist[e.vex] = nowCost + e.cost;
-                    answer += e.cost;
                     pq.offer(new Edge(e.vex, nowCost+e.cost));
                 }
             }

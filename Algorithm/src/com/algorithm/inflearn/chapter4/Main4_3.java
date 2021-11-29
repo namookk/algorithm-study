@@ -1,4 +1,4 @@
-package com.algorithm.inflearn.m9.d29;
+package com.algorithm.inflearn.chapter4;
 import java.util.*;
 
 public class Main4_3 {
