@@ -1,64 +1,69 @@
 package com.algorithm.inflearn.chapter9;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main9_7 {
-    static ArrayList<ArrayList<Edge>> graph;
-    static int[] dist;
+    static int[] unf;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int v = sc.nextInt();
         int e = sc.nextInt();
-        graph = new ArrayList<ArrayList<Edge>>();
-        dist = new int[v+1];
-        for(int i = 1; i <= v; i++) dist[i] = Integer.MAX_VALUE;
-        for(int i = 0; i <= v; i++) graph.add(new ArrayList<Edge>());
+        unf = new int[v+1];
+        for(int i = 1; i <= v; i++) unf[i] = i;
+
+        List<WonderRandEdge> edgeList = new ArrayList<>();
         for(int i = 0; i < e; i++) {
             int v1 = sc.nextInt();
             int v2 = sc.nextInt();
             int cost = sc.nextInt();
-            graph.get(v1).add(new Edge(v2, cost));
-            graph.get(v2).add(new Edge(v1, cost));
+            edgeList.add(new WonderRandEdge(v1, v2, cost));
         }
 
-        System.out.println(solution(1));
+        System.out.println(solution(edgeList));
     }
 
-    public static int solution(int v) {
-        PriorityQueue<Edge> pq = new PriorityQueue<>();
-        pq.offer(new Edge(v, 0));
-        dist[v] = 0;
+    public static void Union(int a, int b){
+        int fa = Find(a);
+        int fb = Find(b);
+        if(fa != fb) unf[fa] = fb;
+    }
+
+    public static int Find(int v) {
+        if(v == unf[v]) return v;
+        else return unf[v] = Find(unf[v]);
+    }
+
+    public static int solution(List<WonderRandEdge> edgeList) {
         int answer = 0;
-        while(!pq.isEmpty()) {
-            Edge edge = pq.poll();
-            int nowVex = edge.vex;
-            int nowCost = edge.cost;
-            if(nowCost > dist[nowVex])continue;
-            for(int i = 0; i < graph.get(nowVex).size(); i++) {
-                Edge e = graph.get(nowVex).get(i);
-                if(dist[e.vex] > nowCost + e.cost){
-                    dist[e.vex] = nowCost + e.cost;
-                    pq.offer(new Edge(e.vex, nowCost+e.cost));
-                }
-            }
+        Collections.sort(edgeList);
+        for(WonderRandEdge edge : edgeList) {
+            int fv1 = Find(edge.vex1);
+            int fv2 = Find(edge.vex2);
+            if(fv1 == fv2) continue;
+
+            Union(edge.vex1, edge.vex2);
+            answer += edge.cost;
         }
         return answer;
     }
 }
 
-class Edge implements Comparable<Edge>{
-    int vex;
+class WonderRandEdge implements Comparable<WonderRandEdge>{
+    int vex1;
+    int vex2;
     int cost;
 
-    Edge(int _vex, int _cost) {
-        vex = _vex;
+    WonderRandEdge(int _vex1, int _vex2, int _cost) {
+        vex1 = _vex1;
+        vex2 = _vex2;
         cost = _cost;
     }
 
     @Override
-    public int compareTo(Edge e) {
+    public int compareTo(WonderRandEdge e) {
         return this.cost - e.cost;
     }
 }
