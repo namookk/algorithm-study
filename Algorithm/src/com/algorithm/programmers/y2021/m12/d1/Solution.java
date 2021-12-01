@@ -25,12 +25,42 @@ import java.util.Arrays;
     테스트 4 〉	통과 (10.14ms, 53.6MB)
     테스트 5 〉	통과 (10.49ms, 54.1MB)*/
 
+
+// Solution2 풀이로 통과
 public class Solution {
     public static void main(String[] args) {
-        int[] people = {40, 50, 100, 160};
-        int limit = 200;
+        int[] people = {70, 80, 50};
+        int limit = 100;
         System.out.println(solution(people, limit));
+        System.out.println(solution2(people, limit)); // 재풀이
     }
+    public static int solution2(int[] people, int limit) {
+        int answer = 0;
+        Arrays.sort(people);
+        int lt = people.length - 1;
+        int rt = 0;
+
+        int len = people.length;
+
+        for(int i = 0; i < people.length; i++) {
+            if(people[lt] <= limit/2) {
+                answer += len % 2 == 0 ? len / 2 : len / 2 + 1;
+                break;
+            }
+            if(people[lt] + people[rt] > limit){
+                lt--;
+                len--;
+            }else {
+                lt--;
+                rt++;
+                len -= 2;
+            }
+            answer++;
+        }
+
+        return answer;
+    }
+
     public static int solution(int[] people, int limit) {
         int answer = 0;
         int[] ch = new int[people.length];
