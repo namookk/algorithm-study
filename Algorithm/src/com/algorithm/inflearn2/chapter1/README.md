@@ -13,3 +13,18 @@
 ```
 
 <br/><br/>
+
+### 2. 보석과 돌(Jewels And Stones)
+
+#### 예시 입력
+```
+jewels = "aA",
+stones = "aAAbbbb" 
+```
+
+#### 예시 출력
+```
+3
+```
+
+<br/><br/>
