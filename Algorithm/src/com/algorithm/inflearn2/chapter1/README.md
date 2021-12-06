@@ -28,3 +28,18 @@ stones = "aAAbbbb"
 ```
 
 <br/><br/>
+
+### 3. 라이센스 키 포맷(License Key Formatting)
+
+#### 예시 입력
+```
+s = "8F3Z-2e-9-w"
+k = 4
+```
+
+#### 예시 출력
+```
+"8F3Z-2E9W“
+```
+
+<br/><br/>
