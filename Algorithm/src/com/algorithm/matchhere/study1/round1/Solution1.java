@@ -1,4 +1,4 @@
-package com.algorithm.matchhere.study1.week1;
+package com.algorithm.matchhere.study1.round1;
 
 import java.util.Scanner;
 
