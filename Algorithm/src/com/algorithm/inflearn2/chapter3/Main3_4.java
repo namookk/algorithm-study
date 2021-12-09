@@ -12,11 +12,12 @@ public class Main3_4 {
         for(int i = 0; i < height.length - 1; i++) {
             int curr = height[i];
             if(leftMax > curr) {
-                int rightMax = height[i+1];
+                int rightMax = Math.max(height[i+1], curr);
+
                 for(int j = i+1; j < height.length; j++) {
                     rightMax = Math.max(rightMax, height[j]);
                 }
-                if(rightMax > curr) answer += Math.min(rightMax, leftMax) - curr;
+                answer += Math.min(rightMax, leftMax) - curr;
             }
             leftMax = Math.max(leftMax, curr);
         }
