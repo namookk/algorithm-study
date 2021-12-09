@@ -10,6 +10,7 @@ public class Main3_2 {
         for(int i : solve(temperatures2)) System.out.print(i + " ");
     }
 
+    //Worst Case O(n^2)
     public static int[] solve(int[] temperatures) {
         int[] answer = new int[temperatures.length];
         int lt = 0;
