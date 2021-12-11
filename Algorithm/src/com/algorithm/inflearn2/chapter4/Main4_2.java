@@ -10,6 +10,8 @@ public class Main4_2 {
 
         System.out.println(solve(s));
         System.out.println(solve(s2));
+        System.out.println(re_solve(s));
+        System.out.println(re_solve(s2));
     }
 
     public static int solve(String s) {
@@ -40,5 +42,29 @@ public class Main4_2 {
             answer = Math.max(answer, rt-lt);
         }
         return answer;
+    }
+
+    public static int re_solve(String s) {
+        //1. ds
+        Map<Character, Integer> map = new HashMap<>();
+        int l = 0, r = 0, counter = 0, max = 0;
+
+        //2
+        while(r < s.length()) {
+            char c = s.charAt(r);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+            if(map.get(c) == 1) counter++;
+            r++;
+
+            while(counter > 2) {
+                char c2 = s.charAt(l);
+                map.put(c2, map.get(c2) - 1);
+                if(map.get(c2) == 0) counter--;
+                l++;
+            }
+            max = Math.max(max, r-l);
+        }
+
+        return max;
     }
 }
