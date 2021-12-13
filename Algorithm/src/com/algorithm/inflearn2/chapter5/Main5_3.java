@@ -30,6 +30,14 @@ public class Main5_3 {
             System.out.print(result.val +" -> ");
             result = result.next;
         }
+
+        System.out.println();
+
+        ListNode result2 = re_solve(nodeList);
+        while(result2 != null) {
+            System.out.print(result2.val +" -> ");
+            result2 = result2.next;
+        }
     }
 
     public static ListNode solve(List<ListNode> nodeList) {
@@ -39,7 +47,6 @@ public class Main5_3 {
         for(int i = 0; i < nodeList.size(); i++) {
             ListNode node = nodeList.get(i);
             while(node != null) {
-                System.out.println(node.val);
                 pq.offer(node.val);
                 node = node.next;
             }
@@ -54,5 +61,28 @@ public class Main5_3 {
         }
 
         return head;
+    }
+
+    public static ListNode re_solve(List<ListNode> nodeList) {
+        //1. ds
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b) -> a.val - b.val);
+        ListNode head = new ListNode(0);
+        ListNode res = head;
+
+        //2. for while
+        for(ListNode node : nodeList) {
+            if(node != null) pq.offer(node);
+        }
+        while(!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            res.next = node;
+            res = res.next;
+
+            if(node.next != null) {
+                pq.offer(node.next);
+            }
+        }
+
+        return head.next;
     }
 }

@@ -11,6 +11,12 @@ public class Main5_2 {
             System.out.println(result.val);
             result = result.next;
         }
+        System.out.println();
+        ListNode result2 = re_solve(listNode);
+        while(result2 != null) {
+            System.out.println(result2.val);
+            result2 = result2.next;
+        }
     }
 
     public static ListNode solve(ListNode listNode) {
@@ -28,5 +34,20 @@ public class Main5_2 {
         }
 
         return head;
+    }
+
+    public static ListNode re_solve(ListNode listNode) {
+        //1.ds
+        ListNode next = null;
+        ListNode prev = null;
+
+        while(listNode != null) {
+            next = listNode.next;
+            listNode.next = prev;
+            prev = listNode;
+            listNode = next;
+        }
+
+        return prev;
     }
 }
