@@ -21,8 +21,7 @@ public class Main6_1 {
             }else if(cmd.equals("C")){
                 stack.pop();
             }else if(cmd.equals("D")){
-                int num = stack.pop();
-                stack.add(num);
+                int num = stack.peek();
                 stack.add(num * 2);
             }else{
                 stack.add(Integer.parseInt(cmd));
