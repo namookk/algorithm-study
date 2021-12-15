@@ -72,3 +72,18 @@ wordList = ["hot","dot","dog","lot","log","cog"]
 
 <br/><br/>
 
+### 8. Word Search
+
+#### 예시 입력
+```
+board = [['A','B','C','E'], ['S','F','C','S'], ['A','D','E','E']]
+word = "ABCCED"
+```
+
+#### 예시 출력
+```
+true
+```
+
+<br/><br/>
+
