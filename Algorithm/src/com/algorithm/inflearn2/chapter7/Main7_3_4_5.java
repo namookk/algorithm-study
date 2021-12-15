@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class Main_7_3_4_5 {
+public class Main7_3_4_5 {
     static int answer;
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
