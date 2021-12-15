@@ -37,7 +37,7 @@ grid = [
 
 <br/><br/>
 
-### 3. Max Area Of Islands
+### 6. Max Area Of Islands
 
 #### 예시 입력
 ```
@@ -52,6 +52,22 @@ grid = [
 #### 예시 출력
 ```
 8
+```
+
+<br/><br/>
+
+### 7. Word Ladder
+
+#### 예시 입력
+```
+beginWord = "hit",
+endWord = "cog",
+wordList = ["hot","dot","dog","lot","log","cog"]
+```
+
+#### 예시 출력
+```
+5
 ```
 
 <br/><br/>
