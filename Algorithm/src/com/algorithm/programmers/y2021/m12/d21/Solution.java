@@ -4,19 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 //https://programmers.co.kr/learn/courses/30/lessons/77486
 //정확성  테스트
-//        테스트 1 〉	통과 (0.20ms, 71.7MB)
-//        테스트 2 〉	통과 (0.31ms, 76.4MB)
-//        테스트 3 〉	통과 (0.27ms, 74.4MB)
-//        테스트 4 〉	통과 (0.48ms, 69.9MB)
-//        테스트 5 〉	통과 (1.01ms, 75.9MB)
-//        테스트 6 〉	통과 (3.13ms, 104MB)
-//        테스트 7 〉	통과 (3.51ms, 98.8MB)
-//        테스트 8 〉	통과 (4.89ms, 100MB)
-//        테스트 9 〉	통과 (13.86ms, 109MB)
-//        테스트 10 〉	통과 (65.17ms, 143MB)
-//        테스트 11 〉	실패 (시간 초과)
-//        테스트 12 〉	실패 (시간 초과)
-//        테스트 13 〉	실패 (시간 초과)
+//        테스트 1 〉	통과 (0.35ms, 78.8MB)
+//        테스트 2 〉	통과 (0.26ms, 77.1MB)
+//        테스트 3 〉	통과 (0.45ms, 76MB)
+//        테스트 4 〉	통과 (0.54ms, 78.9MB)
+//        테스트 5 〉	통과 (1.02ms, 74.8MB)
+//        테스트 6 〉	통과 (5.44ms, 110MB)
+//        테스트 7 〉	통과 (3.50ms, 99.8MB)
+//        테스트 8 〉	통과 (4.64ms, 101MB)
+//        테스트 9 〉	통과 (10.31ms, 94.8MB)
+//        테스트 10 〉	통과 (43.01ms, 145MB)
+//        테스트 11 〉	통과 (35.73ms, 150MB)
+//        테스트 12 〉	통과 (30.04ms, 138MB)
+//        테스트 13 〉	통과 (53.67ms, 144MB)
 public class Solution {
     static int answer = 1;
     static int[][] dirs = {{1,0}, {0, 1}, {1,1}};
@@ -50,6 +50,8 @@ public class Solution {
     }
 
     public static void getMoney(Map<String, Node> map, String key, int pay) {
+        if(pay == 0) return;
+
         Node node = map.get(key);
         int parentPay = pay >= 10 ? pay/10 : 0;
         int myPay = pay - parentPay;
