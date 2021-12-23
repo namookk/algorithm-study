@@ -17,6 +17,21 @@ import java.util.List;
 //    테스트 9 〉	통과 (59.74ms, 119MB)
 //    테스트 10 〉	통과 (52.75ms, 140MB)
 //    테스트 11 〉	통과 (60.95ms, 146MB)
+
+//성공
+//정확성  테스트
+//    테스트 1 〉	통과 (2.75ms, 76.9MB)
+//    테스트 2 〉	통과 (2.75ms, 76.5MB)
+//    테스트 3 〉	통과 (3.59ms, 72.7MB)
+//    테스트 4 〉	통과 (8.54ms, 77MB)
+//    테스트 5 〉	통과 (10.71ms, 87.1MB)
+//    테스트 6 〉	통과 (19.09ms, 92.1MB)
+//    테스트 7 〉	통과 (57.80ms, 104MB)
+//    테스트 8 〉	통과 (47.53ms, 92.6MB)
+//    테스트 9 〉	통과 (60.29ms, 123MB)
+//    테스트 10 〉	통과 (51.99ms, 122MB)
+//    테스트 11 〉	통과 (64.48ms, 147MB)
+
 public class Solution {
     static int[][] dirs = {{1,0}, {-1, 0}, {0, 1}, {0, -1}}; // R, L, D, U
     static int[][][] ch;
@@ -43,19 +58,74 @@ public class Solution {
                         startI = i;
                         startJ = j;
                         startK = k;
-                        dfs(grids, i, j, k, 0);
+                        doWhile(grids, i, j, k, 0);
                     }
                 }
             }
         }
-
         return answer.stream().mapToInt(i->i).sorted().toArray();
+    }
+
+    public static void doWhile(char[][] grids, int i, int j, int k, int sum){
+        while(ch[i][j][k] == 0) {
+            ch[i][j][k] = 1;
+            switch (k) {
+                case 0: // R
+                    j = j < grids[0].length - 1 ? j + 1 : 0;
+                    break;
+                case 1: // L
+                    j = j > 0 ? j - 1 : grids[0].length - 1;
+                    break;
+                case 2: // D
+                    i = i < grids.length - 1 ? i + 1 : 0;
+                    break;
+                case 3: // U
+                    i = i > 0 ? i - 1 : grids.length - 1;
+                    break;
+                default:
+                    break;
+            }
+
+            char next = grids[i][j];
+            int new_k = 0;
+            switch (next) {
+                case 'S': // L
+                    new_k = k;
+                    break;
+                case 'L': // D
+                    if (k == 0) {
+                        new_k = 3;
+                    } else if (k == 1) {
+                        new_k = 2;
+                    } else if (k == 2) {
+                        new_k = 0;
+                    } else {
+                        new_k = 1;
+                    }
+                    break;
+                case 'R': // U
+                    if (k == 0) {
+                        new_k = 2;
+                    } else if (k == 1) {
+                        new_k = 3;
+                    } else if (k == 2) {
+                        new_k = 1;
+                    } else {
+                        new_k = 0;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            sum += 1;
+            k = new_k;
+        }
+        if(i == startI && j == startJ && k == startK && ch[i][j][k] == 1) answer.add(sum);
     }
 
     public static void dfs(char[][] grids, int i, int j, int k, int sum) {
         if(i == startI && j == startJ && k == startK && ch[i][j][k] == 1) answer.add(sum);
         else if(ch[i][j][k] == 1){
-            ch[i][j][k] = 0;
             return;
         }
         else {
