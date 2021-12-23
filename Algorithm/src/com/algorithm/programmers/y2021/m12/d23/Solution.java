@@ -3,6 +3,20 @@ package com.algorithm.programmers.y2021.m12.d23;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://programmers.co.kr/learn/courses/30/lessons/86052
+
+//정확성  테스트
+//    테스트 1 〉	통과 (2.53ms, 78.3MB)
+//    테스트 2 〉	통과 (3.02ms, 71.6MB)
+//    테스트 3 〉	통과 (2.82ms, 80.2MB)
+//    테스트 4 〉	통과 (7.47ms, 82.9MB)
+//    테스트 5 〉	통과 (9.40ms, 89.7MB)
+//    테스트 6 〉	통과 (11.43ms, 82.8MB)
+//    테스트 7 〉	실패 (런타임 에러)
+//    테스트 8 〉	통과 (38.45ms, 111MB)
+//    테스트 9 〉	통과 (59.74ms, 119MB)
+//    테스트 10 〉	통과 (52.75ms, 140MB)
+//    테스트 11 〉	통과 (60.95ms, 146MB)
 public class Solution {
     static int[][] dirs = {{1,0}, {-1, 0}, {0, 1}, {0, -1}}; // R, L, D, U
     static int[][][] ch;
@@ -10,7 +24,7 @@ public class Solution {
     static List<Integer> answer = new ArrayList<>();
     static boolean flag = false;
     public static void main(String[] args) {
-        String[] grid = {"R", "R"};
+        String[] grid = {"SL", "LR"};
 
         for(Integer i : solution(grid)) System.out.print(i + " ");
     }
@@ -35,12 +49,15 @@ public class Solution {
             }
         }
 
-        return answer.stream().mapToInt(i->i).toArray();
+        return answer.stream().mapToInt(i->i).sorted().toArray();
     }
 
     public static void dfs(char[][] grids, int i, int j, int k, int sum) {
         if(i == startI && j == startJ && k == startK && ch[i][j][k] == 1) answer.add(sum);
-        else if(ch[i][j][k] == 1) return;
+        else if(ch[i][j][k] == 1){
+            ch[i][j][k] = 0;
+            return;
+        }
         else {
             ch[i][j][k] = 1;
             switch (k) {
