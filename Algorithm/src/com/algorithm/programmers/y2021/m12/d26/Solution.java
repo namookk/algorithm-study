@@ -1,7 +1,6 @@
 package com.algorithm.programmers.y2021.m12.d26;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -54,8 +53,8 @@ public class Solution {
         int k = 2;
         String[] cmds = {"D 2","C","U 3","C","D 4","C","U 2","Z","Z"};
         String[] cmds2 = {"D 2","C","U 3","C","D 4","C","U 2","Z","Z","U 1","C"};
-        System.out.println(solution(n,k,cmds));
-        System.out.println(solution(n,k,cmds2));
+        System.out.println(re_solution(n,k,cmds));
+        System.out.println(re_solution(n,k,cmds2));
     }
     public static String solution(int n, int k, String[] cmds){
         int[] arr = new int[n];
@@ -90,5 +89,52 @@ public class Solution {
             else sb.append("X");
         }
         return sb.toString();
+    }
+
+    public static String re_solution(int n, int k, String[] cmds){
+        int[] prev = new int[n];
+        int[] next = new int[n];
+        for(int i = 0; i < n; i++){
+            prev[i] = i - 1;
+            next[i] = i + 1;
+        }
+        next[n - 1] = -1;
+
+        Stack<Node> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder("O".repeat(n));
+        for(String cmd : cmds){
+            String[] cmdArr = cmd.split(" ");
+            int num = cmdArr.length > 1 ? Integer.parseInt(cmdArr[1]) : 0;
+            String cmdStr = cmdArr[0];
+            if(cmdStr.equals("U")){
+                while(num-- > 0) k = prev[k];
+            }else if(cmdStr.equals("D")){
+                while(num-- > 0) k = next[k];
+            }else if(cmdStr.equals("C")){
+                stack.add(new Node(prev[k], next[k], k));
+                if(prev[k] != -1) next[prev[k]] = next[k];
+                if(next[k] != -1) prev[next[k]] = prev[k];
+                sb.setCharAt(k, 'X');
+
+                if(next[k] != -1) k = next[k];
+                else k = prev[k];
+            }else{
+                Node node = stack.pop();
+                if(node.prev != -1) next[node.prev] = node.curr;
+                if(node.next != -1) prev[node.next] = node.curr;
+                sb.setCharAt(node.curr, 'O');
+            }
+        }
+
+        return sb.toString();
+    }
+}
+
+class Node{
+    int prev, next, curr;
+    public Node(int prev, int next, int curr){
+        this.prev = prev;
+        this.next = next;
+        this.curr = curr;
     }
 }
