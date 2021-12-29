@@ -1,8 +1,6 @@
 package com.algorithm.inflearn2.chapter7;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 
 public class Main7_7 {
@@ -29,7 +27,7 @@ public class Main7_7 {
                 int[] new_ch = node.ch;
                 for(int j = 0; j < words.length; j++){
                     if(new_ch[j] == 0 && checkWord(node.word, words[j])){
-                        if(words[j].equals(end)) return answer + 1;
+                        if(words[j].equals(end)) return answer;
                         new_ch[j] = 1;
                         queue.offer(new Node(words[j], new_ch));
                     }
@@ -37,7 +35,7 @@ public class Main7_7 {
             }
             answer++;
         }
-        return answer+1;
+        return 0;
     }
 
     public static boolean checkWord(String word1, String word2) {
