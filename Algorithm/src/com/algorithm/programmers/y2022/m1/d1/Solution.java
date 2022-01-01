@@ -8,7 +8,7 @@ public class Solution {
         System.out.println(solution(phone_book));
     }
 
-    public static boolean solution(String[] phone_book){
+    private static boolean solution(String[] phone_book){
         Arrays.sort(phone_book, (a,b) ->{
             return a.compareTo(b);
         });
