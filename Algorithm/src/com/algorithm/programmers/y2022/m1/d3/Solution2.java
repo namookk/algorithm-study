@@ -3,6 +3,17 @@ package com.algorithm.programmers.y2022.m1.d3;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://programmers.co.kr/learn/courses/30/lessons/42895#
+//정확성  테스트
+//    테스트 1 〉	통과 (14.41ms, 82.1MB)
+//    테스트 2 〉	통과 (0.47ms, 72MB)
+//    테스트 3 〉	통과 (1.28ms, 78MB)
+//    테스트 4 〉	통과 (23.23ms, 95.1MB)
+//    테스트 5 〉	통과 (18.14ms, 92MB)
+//    테스트 6 〉	통과 (1.30ms, 79.4MB)
+//    테스트 7 〉	통과 (1.39ms, 72.9MB)
+//    테스트 8 〉	통과 (7.33ms, 79.1MB)
+//    테스트 9 〉	통과 (0.50ms, 79.4MB)
 public class Solution2 {
     public static void main(String[] args) {
         int N = 8;
