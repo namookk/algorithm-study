@@ -1,6 +1,6 @@
 package com.algorithm.programmers.y2022.m1.d6;
 
-import java.util.Arrays;
+import java.util.*;
 
 //https://programmers.co.kr/learn/courses/30/lessons/72412?language=java
 //정확성  테스트
@@ -32,7 +32,7 @@ public class Solution {
         String[] info = {"java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"};
         String[] query = {"java and backend and junior and pizza 100","python and frontend and senior and chicken 200","cpp and - and senior and pizza 250","- and backend and senior and - 150","- and - and - and chicken 100","- and - and - and - 150"};
 
-        for(int i : solution(info, query)) System.out.print(i + " ");
+        for(int i : re_solution(info, query)) System.out.print(i + " ");
     }
 
     private static int[] solution(String[] info, String[] query){
@@ -78,5 +78,83 @@ public class Solution {
             this.food = food;
             this.score = score;
         }
+    }
+
+
+
+
+
+    private static int[] re_solution(String[] info, String[] query){
+        int[] answer = new int[query.length];
+        Map<String, List<Integer>> map = new HashMap<>();
+
+        for(String infoStr : info){
+            String[] infoArr = infoStr.split(" ");
+            List<String> keys = new ArrayList<>();
+            generateKey(keys, infoArr);
+
+            int score = Integer.parseInt(infoArr[4]);
+            for(String key : keys) {
+                List<Integer> list = map.getOrDefault(key, new ArrayList<Integer>());
+                list.add(score);
+                map.put(key, list);
+            }
+        }
+
+        for(int i = 0; i < query.length; i++){
+            String queryStr = query[i];
+            String[] queryArr = queryStr.split(" and ");
+            String[] foodAndScore = queryArr[3].split(" ");
+            String key = queryArr[0] + queryArr[1] + queryArr[2] + foodAndScore[0];
+            Integer score = Integer.parseInt(foodAndScore[1]);
+            List<Integer> scoreList = map.get(key);
+            if(scoreList != null && !scoreList.isEmpty()){
+                int size = scoreList.size();
+                if(size < 2){
+                    if(scoreList.get(0) >= score) answer[i] = 1;
+                }else {
+                    Collections.sort(scoreList);
+                    int low = 0;
+                    int high = size - 1;
+                    int mid = (low + high) % 2 == 0 ? (low + high) / 2 : (low + high) / 2 + 1;
+                    while(scoreList.get(mid) < score || scoreList.get(mid - 1) >= score){
+                        if(scoreList.get(mid) >= score){
+                            high = mid - 1;
+                        }else{
+                            low = mid + 1;
+                        }
+                        mid = (low + high) % 2 == 0 ? (low + high) / 2 : (low + high) / 2 + 1;
+                    }
+                    answer[i] = size - mid;
+                }
+            }else{
+                answer[i] = 0;
+            }
+        }
+        return answer;
+    }
+
+    private static void generateKey(List<String> list, String[] infoArr){
+        String language = infoArr[0];
+        String job = infoArr[1];
+        String career = infoArr[2];
+        String food =  infoArr[3];
+
+        list.add(language + job + career + food);
+        list.add(language + job + career + "-");
+        list.add(language + job + "-" + food);
+        list.add(language + job + "-" + "-");
+        list.add(language + "-" + career + food);
+        list.add(language + "-" + career + "-");
+        list.add(language + "-" + "-" + food);
+        list.add(language + "-" + "-" + "-");
+        list.add("-" + job + career + food);
+        list.add("-" + job + career + "-");
+        list.add("-" + job + "-" + food);
+        list.add("-" + job + "-" + "-");
+        list.add("-" + "-" + career + food);
+        list.add("-" + "-" + career + "-");
+        list.add("-" + "-" + "-" + food);
+        list.add("-" + "-" + "-" + "-");
     }
 }
