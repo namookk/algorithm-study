@@ -11,7 +11,7 @@ public class Main3_3 {
         for(int i = 0 ; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        System.out.print(solution(k, arr));
+        System.out.print(solution2(k, arr));
     }
 
     public static int solution(int k, int[] arr) {
@@ -27,6 +27,22 @@ public class Main3_3 {
             if(maxSum < currSum) maxSum = currSum;
         }
 
+        return maxSum;
+    }
+
+    public static int solution2(int k, int[] arr){
+        int currSum = 0;
+        for(int i = 0; i < k; i++){
+            currSum += arr[i];
+        }
+        int maxSum = currSum;
+        int lt = 1;
+        int rt = lt + k - 1;
+        while(rt < arr.length){
+            currSum -= arr[lt++ - 1];
+            currSum += arr[rt++];
+            maxSum = Math.max(maxSum, currSum);
+        }
         return maxSum;
     }
 }
