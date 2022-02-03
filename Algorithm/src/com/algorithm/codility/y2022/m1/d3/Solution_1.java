@@ -6,11 +6,12 @@ import java.util.List;
 
 public class Solution_1 {
     public static void main(String[] args) {
-        int num = 1;
+        int num = 0;
         System.out.println(solution(num));
     }
 
     private static int solution(int N) {
+        if(N == 0) return 0;
         Integer num = N;
 
         List<Integer> numList = new ArrayList<>();
