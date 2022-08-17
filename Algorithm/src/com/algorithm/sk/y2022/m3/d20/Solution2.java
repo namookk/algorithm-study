@@ -25,17 +25,20 @@ public class Solution2 {
     private static String[] solution(String[] arr, String[] processes) {
         String[] answer = new String[processes.length + 1];
 
+        //우선순위 큐로 작업이 가장 먼저 끝나는 Job을 꺼냄
         PriorityQueue<Job> pq = new PriorityQueue<>((a,b) -> {
             return a.getEndTime() - b.getEndTime();
         });
+        //작업 대기열 FIFO를 적용하기 위해 Queue사용
         Queue<Job> writeSchedule = new LinkedList<>();
         Queue<Job> readSchedule = new LinkedList<>();
-        int usingTime = 0;
-        int time = 1;
-        int idx = 0;
+
+        int usingTime = 0; //실제 사용 시간
+        int time = 1; //현재 시간
+        int idx = 0; //process의 idx
 
         while(idx < processes.length || !pq.isEmpty()) {
-            //작업중인 Job 끝내기
+            //작업중인 Job 끝내기 ( 꺼내온 작업의 종료시간이 현재시간보다 작거나 같을 경우 작업을 종료해야함 )
             while(!pq.isEmpty() && pq.peek().getEndTime() <= time) {
                 Job job = pq.poll();
                 System.out.println("processes["+job.idx+"] 작업 종료 시간 = " + job.getEndTime());
@@ -63,13 +66,13 @@ public class Solution2 {
                 int endIdx = Integer.parseInt(split[4]);
                 String changeValue = command.equals("write") ? split[5] : null;
 
-                //새로운 Job 스케쥴링 등록
+                //새로운 Job 스케쥴링 등록 새로운 Job의 시작시간이 현재시간일 경우
                 if (startTime == time) {
                     Job newJob = new Job(idx, command, startTime, duringTime, startIdx, endIdx, changeValue);
                     if (newJob.command.equals("read")) {
                         if(!pq.isEmpty()
                                 && pq.peek().command.equals("read")
-                                && writeSchedule.isEmpty()) {
+                                && writeSchedule.isEmpty()) { //읽기작업이 실행중이고 쓰기대기열이 비어있을 경우 새로운 작업을 바로 시작한다.
                            pq.offer(newJob);
                         }else {
                             readSchedule.offer(newJob);
@@ -81,8 +84,9 @@ public class Solution2 {
                 }
             }
 
-            //대기중인 Job 시작
+            //진행중인 작업이 없을경우 대기중인 Job 시작
             if(pq.isEmpty()) {
+              //시작시 job의 startTime을 현재시간으로 변경
               if(!writeSchedule.isEmpty()) {
                   Job writeJob = writeSchedule.poll();
                   writeJob.startTime = time;
@@ -97,11 +101,12 @@ public class Solution2 {
             }
 
             time++; //현재시간
-            if(!pq.isEmpty()) usingTime++; //실제 사용 시간
+            if(!pq.isEmpty()) usingTime++; //실제 사용 시간 pq가 비어있지 않을 경우 작업중이므로 usingTime++
         }
 
         answer[answer.length - 1] = usingTime + "";
 
+        //읽기 process만 리턴해야하므로 != null 필터링 후 리턴
         return Arrays.stream(answer)
                 .filter(str -> str != null)
                 .toArray(String[]::new);
